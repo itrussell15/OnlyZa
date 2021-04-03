@@ -1,0 +1,25 @@
+{
+  "customer": {
+    "fname": "Joe",
+    "lname": "Biden",
+    "address": "1000 Penslyvania Ave",
+    "city": "Washington DC",
+    "state": "WA",
+    "zip": "123456",
+    "type": "House",
+    "phone": "0000000000"
+  },
+  "payments": {},
+  "desired_store": "0000",
+  "coupon_code": "9204",
+  "service_method":  "Carryout",
+  "Product": {
+    "code": "P12IPAZA",
+    "Options": {
+      "X": { "1/1": "1" },
+      "C": { "1/1": "1" },
+      "Cp": { "1/1": "1" },
+    }
+  }
+}
+
