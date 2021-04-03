@@ -1,0 +1,16 @@
+C:\Users\Schmuck\source\repos\OnlyZa\OnlyZa\bin\Debug\OnlyZa.exe.config
+C:\Users\Schmuck\source\repos\OnlyZa\OnlyZa\bin\Debug\OnlyZa.exe
+C:\Users\Schmuck\source\repos\OnlyZa\OnlyZa\bin\Debug\OnlyZa.pdb
+C:\Users\Schmuck\source\repos\OnlyZa\OnlyZa\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Schmuck\source\repos\OnlyZa\OnlyZa\bin\Debug\RestSharp.dll
+C:\Users\Schmuck\source\repos\OnlyZa\OnlyZa\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Schmuck\source\repos\OnlyZa\OnlyZa\bin\Debug\RestSharp.xml
+C:\Users\Schmuck\source\repos\OnlyZa\OnlyZa\obj\Debug\OnlyZa.csprojAssemblyReference.cache
+C:\Users\Schmuck\source\repos\OnlyZa\OnlyZa\obj\Debug\OnlyZa.Form1.resources
+C:\Users\Schmuck\source\repos\OnlyZa\OnlyZa\obj\Debug\OnlyZa.Properties.Resources.resources
+C:\Users\Schmuck\source\repos\OnlyZa\OnlyZa\obj\Debug\OnlyZa.csproj.GenerateResource.cache
+C:\Users\Schmuck\source\repos\OnlyZa\OnlyZa\obj\Debug\OnlyZa.csproj.CoreCompileInputs.cache
+C:\Users\Schmuck\source\repos\OnlyZa\OnlyZa\obj\Debug\OnlyZa.csproj.CopyComplete
+C:\Users\Schmuck\source\repos\OnlyZa\OnlyZa\obj\Debug\OnlyZa.exe
+C:\Users\Schmuck\source\repos\OnlyZa\OnlyZa\obj\Debug\OnlyZa.pdb
+C:\Users\Schmuck\source\repos\OnlyZa\OnlyZa\obj\Debug\OnlyZa.Confirmation.resources
