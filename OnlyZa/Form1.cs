@@ -145,7 +145,7 @@ namespace OnlyZa
                     else
                     {
                         Carryout_time.Text = "Service Unavailable";
-                        Order_button.Enabled = true;
+                        Order_button.Enabled = false;
                         Store_Status.BackColor = Color.DarkRed;
                         Store_Status_label.Text = "Store Closed";
                     }

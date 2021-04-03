@@ -78,6 +78,8 @@ namespace OnlyZa
 
         public JObject Place_Order(JObject data)
         {
+            // Add payment information right before that order is to be processed.
+            // Will need to include the pricing amount before placing the order.
             return Post(url.Place, data);
         }
 
