@@ -76,7 +76,7 @@ namespace OnlyZa
             return Post(url.Price, order);
         }
 
-        public void Place_Order(JObject data, bool need_payment)
+        public JObject Place_Order(JObject data, bool need_payment)
         {
             // Add payment information right before that order is to be processed.
             // Will need to include the pricing amount before placing the order.
@@ -92,7 +92,7 @@ namespace OnlyZa
             }
             Debug.WriteLine(data);
 
-            //return Post(url.Place, data);
+            return Post(url.Place, data);
         }
 
         private JObject Get(string endpoint)

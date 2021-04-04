@@ -9,7 +9,13 @@
     "type": "House",
     "phone": "0000000000"
   },
-  "payments": {},
+  "payments": {
+    "number": "1234567890",
+    "cardType": "visa",
+    "expiration": "0190",
+    "securityCode": "123",
+    "postalCode": "12345"
+  },
   "desired_store": "0000",
   "coupon_code": "9204",
   "service_method":  "Carryout",
