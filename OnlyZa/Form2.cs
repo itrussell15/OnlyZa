@@ -16,18 +16,20 @@ namespace OnlyZa
     {
 
         public API_Handler api;
-        public JObject resp_in;
+        public JObject resp;
+        public bool has_payment;
 
-        public Confirmation(API_Handler api_in, JObject resp_in)
+        public Confirmation(API_Handler api_in, JObject resp_in, bool payment)
         {
             api = api_in;
+            has_payment = payment;
+            resp = resp_in;
 
             InitializeComponent();
             if (resp_in != null)
-            {
-                Debug.WriteLine(resp_in);
-
+            { 
                 total_price.Text = "$" + resp_in["Order"]["Amounts"]["Payment"];
+                resp = resp_in;
             }
             else
             {
@@ -47,9 +49,9 @@ namespace OnlyZa
          
         private void continue_button_Click(object sender, EventArgs e)
         {
-
-            JObject resp = api.Place_Order(resp_in);
-            if (resp != null)
+            //api.Place_Order(resp, has_payment);
+            JObject final_resp = api.Place_Order(resp, has_payment);
+            if (final_resp != null)
             {
                 MessageBox.Show("Order Placed!");
             }
@@ -57,6 +59,7 @@ namespace OnlyZa
             {
                 MessageBox.Show("Something went wrong.. :(");
             }
+            Debug.WriteLine(final_resp);
             this.Close();
 
         }

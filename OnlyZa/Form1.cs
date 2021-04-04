@@ -23,13 +23,15 @@ namespace OnlyZa
 
         public JArray stores;
         public string curr_store;
+        public bool has_payment;
 
         public Form1()
         {
             InitializeComponent();
             JObject user_data = load_json(json_path);
             api = new API_Handler(user_data);
-            set_settings(user_data);
+            has_payment = false;
+            set_settings(user_data);   
         }
 
         private string format_location()
@@ -73,9 +75,10 @@ namespace OnlyZa
             }
 
             MethodBox.Items.Add("Carryout");
-            if (data["payments"].GetType() != new JObject().GetType())
+            if (data["payments"].GetType() == new JObject().GetType())
             {
                 MethodBox.Items.Add("Delivery");
+                has_payment = true;
             }
 
 
@@ -145,7 +148,7 @@ namespace OnlyZa
                     else
                     {
                         Carryout_time.Text = "Service Unavailable";
-                        Order_button.Enabled = false;
+                        Order_button.Enabled = true;
                         Store_Status.BackColor = Color.DarkRed;
                         Store_Status_label.Text = "Store Closed";
                     }
@@ -157,7 +160,7 @@ namespace OnlyZa
         private void Order_button_Click(object sender, EventArgs e)
         {
             JObject resp = api.Price_Order(Stores_Box.Text);
-            Confirmation confirm = new Confirmation(api, resp);
+            Confirmation confirm = new Confirmation(api, resp, has_payment);
             confirm.ShowDialog();
             this.Close();
         }

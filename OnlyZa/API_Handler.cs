@@ -63,10 +63,10 @@ namespace OnlyZa
             return order.toJson();
         }
 
-        public Order add_payment(Order order, JObject user_info)
+        public Order add_payment(Order order)
         {
             Debug.WriteLine("Payment information added to order");
-            order.Payments.Add(user_info["payments"]);
+            order.Payments.Add(user_data["payments"]);
             return order;
         }
 
@@ -76,11 +76,23 @@ namespace OnlyZa
             return Post(url.Price, order);
         }
 
-        public JObject Place_Order(JObject data)
+        public void Place_Order(JObject data, bool need_payment)
         {
             // Add payment information right before that order is to be processed.
             // Will need to include the pricing amount before placing the order.
-            return Post(url.Place, data);
+            if (need_payment)
+            {
+                Debug.WriteLine("Payment Information Added");
+                Payment payment = new Payment((JObject)user_data["payments"],
+                    Math.Round((float)data["Order"]["Amounts"]["Payment"], 2));
+                
+                JArray data_payment = (JArray)data["Order"]["Payments"];
+                //data_payment["amount"] = data["Order"]["Amounts"][0]["Payment"];
+                data_payment.Add(payment.toJson());
+            }
+            Debug.WriteLine(data);
+
+            //return Post(url.Place, data);
         }
 
         private JObject Get(string endpoint)
@@ -283,12 +295,16 @@ namespace OnlyZa
             public string securityCode;
             public string postalCode;
 
-            public Payment()
+            public Payment(JObject card_info, double price)
             {
                 type = "CreditCard";
-                amount = 0.0;
+                amount = price;
                 tipAmount = 0.0;
-
+                number = (string)card_info["number"];
+                cardType = (string)card_info["cardType"];
+                expiration = (string)card_info["expiration"];
+                securityCode = (string)card_info["securityCode"];
+                postalCode = (string)card_info["postalCode"];
             }
             public JObject toJson()
             {
