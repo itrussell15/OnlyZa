@@ -3,4 +3,6 @@ data.json
 
 \.vs
 
-\OnlyZa
+bin/
+
+obj/
