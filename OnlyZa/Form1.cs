@@ -18,8 +18,13 @@ namespace OnlyZa
     public partial class Form1 : Form
     {
         public API_Handler api;
+        //*** This is when the program is buried inside the VSCode file structure.
         string json_path = Path.Combine(
             Directory.GetCurrentDirectory(), "..", "..", "..", "data.json");
+
+        //****This is for when the data.json is in the same folder as the program that is running.
+        //string json_path = Path.Combine(
+        //Directory.GetCurrentDirectory(),"data.json");
 
         public JArray stores;
         public string curr_store;
@@ -67,7 +72,7 @@ namespace OnlyZa
             {
 
                 Stores_Box.Items.Add(store["StoreID"]);
-                if ((string)store["StoreID"] == (string)data["desired_store"])
+                if (store["StoreID"] == data["desired_store"])
                 {
                     Stores_Box.SelectedItem = (string)store["StoreID"];
                     Stores_Box.Text = (string)store["StoreID"];
@@ -112,7 +117,7 @@ namespace OnlyZa
                 {
 
                     Store_info.Text = (string)store["AddressDescription"];
-                    api.store = Stores_Box.Text;
+                    api.store = Convert.ToInt32(Stores_Box.Text);
 
                     if ((bool)store["ServiceIsOpen"]["Delivery"])
                     {
@@ -159,7 +164,7 @@ namespace OnlyZa
 
         private void Order_button_Click(object sender, EventArgs e)
         {
-            JObject resp = api.Price_Order(Stores_Box.Text);
+            JObject resp = api.Price_Order(Convert.ToInt32(Stores_Box.Text));
             Confirmation confirm = new Confirmation(api, resp, has_payment);
             confirm.ShowDialog();
             this.Close();

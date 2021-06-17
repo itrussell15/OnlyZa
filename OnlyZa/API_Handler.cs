@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RestSharp;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using RestSharp;
+using System;
 using System.Diagnostics;
 
 namespace OnlyZa
@@ -16,7 +12,7 @@ namespace OnlyZa
         RestClient httpbin = new RestClient("https://httpbin.org");
         public Urls url;
         public JObject user_data;
-        public string store;
+        public int store;
 
         public API_Handler(JObject data)
         {
@@ -40,7 +36,7 @@ namespace OnlyZa
 
         }
 
-        public JObject prep_order(string current_store, bool add_coupons)
+        public JObject prep_order(int current_store, bool add_coupons)
         {
             Order order = new Order((string)user_data["service_method"]);
             if (add_coupons)
@@ -70,7 +66,7 @@ namespace OnlyZa
             return order;
         }
 
-        public JObject Price_Order(string current_store, bool add_coupons = true)
+        public JObject Price_Order(int current_store, bool add_coupons = true)
         {
             JObject order = prep_order(current_store, add_coupons);
             return Post(url.Price, order);
@@ -85,7 +81,7 @@ namespace OnlyZa
                 Debug.WriteLine("Payment Information Added");
                 Payment payment = new Payment((JObject)user_data["payments"],
                     Math.Round((float)data["Order"]["Amounts"]["Payment"], 2));
-                
+
                 JArray data_payment = (JArray)data["Order"]["Payments"];
                 //data_payment["amount"] = data["Order"]["Amounts"][0]["Payment"];
                 data_payment.Add(payment.toJson());
@@ -144,7 +140,7 @@ namespace OnlyZa
                 return String.Format(find_url, s1, s2, "Carryout");
             }
 
-            public string Menu(string s1)
+            public string Menu(int s1)
             {
                 return String.Format(menu_url, s1);
             }
@@ -181,7 +177,7 @@ namespace OnlyZa
             public string FirstName;
             public string LastName;
             public string Phone;
-            public string StoreID; 
+            public int StoreID;
 
             public Order(string service_method)
             {
@@ -218,7 +214,7 @@ namespace OnlyZa
             }
         }
 
-        private class Coupon 
+        private class Coupon
         {
             public string Code;
             public int Qty;
@@ -228,7 +224,7 @@ namespace OnlyZa
             public Coupon(string code)
             {
                 Code = code;
-                Qty = 1;
+                Qty = 0;
                 IsBelowMinimumOrderAmount = false;
                 IsBelowMinimumPaymentAmount = false;
             }
